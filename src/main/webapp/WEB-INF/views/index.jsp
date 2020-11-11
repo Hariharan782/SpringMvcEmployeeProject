@@ -1,5 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page isELIgnored="false" %>
+<%@ page isELIgnored="false"%>
 <html>
 <head>
 <Title>Employee Web Application</Title>
@@ -28,20 +28,24 @@
 			</tr>
 		</Table>
 	</Form>
-	<h2>Employee Records - </h2>
-	<Table>
-		<Tr>
-			<Th>Employee Id</Th>
-			<Th>Employee Name</Th>
-			<Th>Employee City</Th>
-		</Tr>
-		<c:forEach items="${employees}" var="emp">
-		<Tr>
-			<td>${emp.employeeId}</td>
-			<td>${emp.employeeName}</td>
-			<td>${emp.employeeCity}</td>
-		</Tr>
-		</c:forEach>
-	</Table>
+	<c:if test="${!empty employees}">
+		<h2>Employee Records -</h2>
+		<Table border="1">
+			<Tr>
+				<Th>Employee Id</Th>
+				<Th>Employee Name</Th>
+				<Th>Employee City</Th>
+				<Th>Action</Th>
+			</Tr>
+			</c:if>
+			<c:forEach items="${employees}" var="emp">
+				<Tr>
+					<td>${emp.employeeId}</td>
+					<td>${emp.employeeName}</td>
+					<td>${emp.employeeCity}</td>
+					<td><a href="deleteEmployee?empId=${emp.employeeId}">Delete</a>
+				</Tr>
+			</c:forEach>
+		</Table>
 </body>
 </html>
